@@ -4,7 +4,7 @@ public class BinarySearch_ClosestNumber {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("test");
+		
 		int[] a = {2,5,6,11,20};
 		int target = 8;
 	}
