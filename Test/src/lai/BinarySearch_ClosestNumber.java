@@ -6,7 +6,8 @@ public class BinarySearch_ClosestNumber {
 		// TODO Auto-generated method stub
 		
 		int[] a = {2,5,6,11,20};
-		int target = 8;
+		int target = 0;
+		System.out.println(binarySearch_ClosestNumber(a,target));
 	}
 	public static int binarySearch_ClosestNumber(int[] a,int target) {
 		int left = 0;
@@ -16,11 +17,13 @@ public class BinarySearch_ClosestNumber {
 			if(a[mid]==target) {
 				return mid;
 			}else if (a[mid]<target) {
-				mid = left;
+				left = mid;
 			}else {
-				mid = right;
+				right = mid;
 			}
 		}
+		System.out.println("left:"+left);
+		System.out.println("right:"+right);
 		if(target-a[left]<a[right]-target) {
 			return left;
 		}else {

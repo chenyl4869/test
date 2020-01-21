@@ -1,6 +1,7 @@
 package leetcode;
 
 import lai.Node;
+import tools.ListNode;
 
 public class N2_AddTwoSum {
 
@@ -8,43 +9,45 @@ public class N2_AddTwoSum {
 		// TODO Auto-generated method stub
 
 	}
-	public Node addTwoSum(Node n1, Node n2) {
-		Node dummy = new Node(-1);
-		Node temp = dummy;
+	/*
+	 * 注意
+	 * 1. l1,l2,cur都要移动
+	 * 2. 最后要检查c，如果是1，还要增加一个节点。
+	 * 
+	 * */
+	public ListNode addTwoSum(ListNode l1, ListNode l2) {
 		int c = 0;
-		while(n1 != null || n2 != null) {
-			int a, b;
-			if(n1 == null) {
-				a = 0;
-			}else {
-				a = n1.value;
-			}
-			if(n2 == null) {
-				b = 0;
-			}else {
-				b = n2.value;
-			}
-			int sum = a + b + c;
-			int digit = sum%10;
+		ListNode dummy = new ListNode(0);
+		ListNode cur = dummy;
+		while(l1!=null &&l2 != null) {
+			int sum = l1.val+l2.val +c;
 			c = sum/10;
-			Node newNode = new Node(digit);
-			newNode.next = null;
-			temp.next = newNode;
-			temp= temp.next;
-			if(n1 != null) {
-				n1 = n1.next;
-			}
-			if(n2 != null) {
-				n2 = n2.next;
-			}
+			int digit = sum%10;
+			cur.next = new ListNode(digit);
+			cur = cur.next;
+			l1=l1.next;
+			l2=l2.next;
 		}
-		if(c == 0) {
-			return dummy.next;
-		}else {
-			temp.next = new Node(c);
-			temp.next.next = null;
-			return dummy.next;
+		while(l1 !=null) {
+			int sum = l1.val+c;
+			c = sum/10;
+			int digit = sum%10;
+			cur.next = new ListNode(digit);
+			cur = cur.next;
+			l1=l1.next;
 		}
+		while(l2 != null) {
+			int sum = l2.val +c;
+			c=sum/10;
+			int digit = sum%10;
+			cur.next = new ListNode(digit);
+			cur = cur.next;
+			l2=l2.next;
+		}
+		if(c==1) {
+			cur.next = new ListNode(1);
+		}
+		return dummy.next;
 		
 	}
 
