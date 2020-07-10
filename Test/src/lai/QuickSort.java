@@ -21,7 +21,7 @@ public class QuickSort {
 	}
 
 	public static void solution(int[] array, int left, int right) {
-		if (left >= right) {
+		if (left >= right) { //不能==， 因为如果只有2个元素，left = 0, right = 1, p = 0的话， 下一轮就是left = 0, right = -1
 			return;
 		}
 		int p = helper(array, left, right);
@@ -32,7 +32,7 @@ public class QuickSort {
 
 	public static int helper(int[] array, int left, int right) {
 		int pivot = array[right];
-		int i = left;
+		int i = left; //这里不能是i = left + 1， 因为i = left，有可能最后的位置就是在left，然后left和自己互换。
 		int j = right;
 		while (i < j) {
 			while (i < j && array[i] <= pivot) {// 这里是小于等于
